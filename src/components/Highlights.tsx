@@ -1,67 +1,37 @@
 import React from 'react';
-import { Brain, Users, Lightbulb, Trophy } from 'lucide-react';
+import { motion } from 'framer-motion';
 
-const highlights = [
-  {
-    icon: Brain,
-    title: 'Gen AI Pioneer',
-    description: 'Leading AI product innovation at HROne, transforming HR tech',
-    stat: '3+ AI Products Launched'
-  },
-  {
-    icon: Trophy,
-    title: 'GLG Consultant',
-    description: 'Advising Fortune 500 companies on product strategy & innovation',
-    stat: '50+ Consultations'
-  },
-  {
-    icon: Lightbulb,
-    title: 'Tech Founder',
-    description: 'Built and scaled innovative solutions from ground up',
-    stat: '2M+ Users Impacted'
-  },
-  {
-    icon: Users,
-    title: 'Product Leader',
-    description: 'Driving cross-functional teams towards excellence',
-    stat: '40+ Team Members Led'
-  }
+interface Highlight {
+  id: number;
+  title: string;
+  description: string;
+}
+
+const highlights: Highlight[] = [
+  { id: 1, title: 'Product Leadership', description: 'Led teams to launch successful digital products with a focus on user-centered design.' },
+  { id: 2, title: 'Cross-Functional Collaboration', description: 'Worked closely with engineering, design, and business teams to deliver innovative solutions.' },
+  { id: 3, title: 'Community Engagement', description: 'Actively mentored and contributed to the product management community.' },
 ];
 
-const Highlights = () => {
+const Highlights: React.FC = () => {
   return (
-    <section className="py-20 bg-slate-800/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {highlights.map((highlight, index) => {
-            const Icon = highlight.icon;
-            return (
-              <div
-                key={index}
-                className="group relative bg-slate-900/50 rounded-xl p-8 hover:bg-slate-900/70 transition-all duration-300 transform hover:-translate-y-1"
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 via-purple-500/10 to-teal-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                
-                <div className="relative z-10">
-                  <div className="w-12 h-12 mb-4 rounded-lg bg-gradient-to-r from-blue-500 via-purple-500 to-teal-500 p-2.5 group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="w-full h-full text-white" />
-                  </div>
-                  
-                  <h3 className="text-xl font-semibold mb-2 text-white">
-                    {highlight.title}
-                  </h3>
-                  
-                  <p className="text-gray-300 mb-4">
-                    {highlight.description}
-                  </p>
-                  
-                  <div className="text-sm font-semibold text-blue-400">
-                    {highlight.stat}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+    <section id="highlights" className="highlights-section py-16 bg-gray-100">
+      <div className="container mx-auto px-4 text-center">
+        <h2 className="text-4xl font-bold mb-8">Highlights</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {highlights.map((highlight) => (
+            <motion.div
+              key={highlight.id}
+              className="bg-white p-6 rounded shadow-md hover:shadow-lg transition-shadow"
+              whileHover={{ scale: 1.05 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: highlight.id * 0.2 }}
+            >
+              <h3 className="text-2xl font-semibold mb-2">{highlight.title}</h3>
+              <p className="text-gray-600">{highlight.description}</p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
