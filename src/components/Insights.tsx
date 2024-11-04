@@ -16,14 +16,21 @@ const insights: Insight[] = [
 
 const Insights: React.FC = () => {
   return (
-    <section id="insights" className="insights-section py-16 bg-white">
+    <section id="insights" className="insights-section py-16 bg-gradient-to-r from-blue-50 to-blue-100">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold mb-8">Insights</h2>
+        <motion.h2 
+          className="text-4xl font-bold mb-8"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Insights
+        </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {insights.map((insight) => (
             <motion.div
               key={insight.id}
-              className="bg-gray-100 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+              className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow"
               whileHover={{ scale: 1.05 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
